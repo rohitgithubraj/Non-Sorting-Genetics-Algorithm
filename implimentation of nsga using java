@@ -1,0 +1,36 @@
+class UtilsClass {
+    public char[] findRank1(char[] container, double[] money, double[] time, int factor) {
+        double best = 100;
+        int k = 0;
+        char[] bestAmong = new char[container.length];
+        for (int i = 0; i < container.length; i++) {
+            if (best > (money[i] + time[i])) {
+                best = (money[i] + time[i]);
+                // bestAmong[k] = container[i];
+            }
+        }
+        for (int j = 0; j < container.length; j++) {
+            if ((money[j] + time[j]) <= (best + (double) factor)) {
+                bestAmong[++k] = container[j];
+            }
+        }
+        return bestAmong;
+    }
+}
+
+public class GeneticAlgorith {
+
+    public static void main(String[] args) {
+        int factor = 5;
+        char[] storage = new char[10];
+        char[] container = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' };
+        double[] money = { 1, 10, 9, 5, 3, 13, 20, 32, 45, 5 };
+        double[] time = { 8, 17, 3, 1, 2, 7, 2, 3, 3, 2 };
+        UtilsClass u = new UtilsClass();
+        storage = u.findRank1(container, money, time, factor);
+
+        for (int i = 0; i < storage.length; i++) {
+            System.out.print(storage[i]+" ");
+        }
+    }
+}
